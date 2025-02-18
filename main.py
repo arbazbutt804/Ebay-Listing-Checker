@@ -87,8 +87,8 @@ if listing_file and order_file:
                     st.session_state.unsold_df = unsold_df
 
 if st.session_state.sold_df is not None and st.session_state.unsold_df is not None:
-    col2, col3 = st.columns(2)
-    with col2:
+    col1, col2 = st.columns(2)
+    with col1:
         get_download_link(st.session_state.sold_df, "sold_items.csv")
-    with col3:
+    with col2:
         get_download_link(st.session_state.unsold_df, "unsold_items.csv")

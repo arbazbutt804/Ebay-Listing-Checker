@@ -64,7 +64,7 @@ def get_download_link(df, filename):
 
 
 # Streamlit UI
-st.set_page_config(page_title="eBay Unsold Items Analyzer", layout="centered")
+st.set_page_config(page_title="eBay Sales Analyzer", layout="centered")
 st.title("📊 eBay Unsold Items Analyzer")
 st.write("Upload your eBay Listing and Order CSV files to analyze which items haven't been sold in the last 60 days.")
 

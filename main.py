@@ -85,7 +85,6 @@ if listing_file and order_file:
                 if sold_df is not None and unsold_df is not None:
                     st.session_state.sold_df = sold_df
                     st.session_state.unsold_df = unsold_df
-                    st.success("Processing complete! Download the results below.")
 
 if st.session_state.sold_df is not None and st.session_state.unsold_df is not None:
     col1, col2 = st.columns(2)

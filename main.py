@@ -71,23 +71,21 @@ listing_file = st.file_uploader("Upload eBay Listing Data CSV", type=['csv'])
 order_file = st.file_uploader("Upload eBay Order Details CSV", type=['csv'])
 
 if listing_file and order_file:
-    col1, col2, col3 = st.columns([1, 2, 1])
-    with col2:
-        if st.button("🔍 Process Data"):
-            with st.spinner("Processing..."):
-                sold_df, unsold_df = process_ebay_data(listing_file, order_file)
+    if st.button("🔍 Process Data"):
+        with st.spinner("Processing..."):
+            sold_df, unsold_df = process_ebay_data(listing_file, order_file)
 
-                if sold_df is not None and unsold_df is not None:
-                    st.success("Processing complete! Download the results below.")
+            if sold_df is not None and unsold_df is not None:
+                st.success("Processing complete! Download the results below.")
 
-                    col1, col2 = st.columns(2)
-                    with col1:
-                        st.subheader("Sold Items")
-                        st.dataframe(sold_df, height=200)
-                        get_download_link(sold_df, "sold_items.csv")
-                    with col2:
-                        st.subheader("Unsold Items")
-                        st.dataframe(unsold_df, height=200)
-                        get_download_link(unsold_df, "unsold_items.csv")
-                else:
-                    st.error("Error processing data. Please check your CSV files.")
+                col1, col2 = st.columns(2)
+                with col1:
+                    st.subheader("Sold Items")
+                    st.dataframe(sold_df, height=200)
+                    get_download_link(sold_df, "sold_items.csv")
+                with col2:
+                    st.subheader("Unsold Items")
+                    st.dataframe(unsold_df, height=200)
+                    get_download_link(unsold_df, "unsold_items.csv")
+            else:
+                st.error("Error processing data. Please check your CSV files.")

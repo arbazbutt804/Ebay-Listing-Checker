@@ -74,7 +74,6 @@ st.markdown("""
     </style>
     <h1 class="title">📊 eBay Sales Analyzer</h1>
 """, unsafe_allow_html=True)
-st.write("Upload your eBay Listing and Order CSV files to analyze which items haven't been sold in the last 60 days.")
 
 listing_file = st.file_uploader("Upload eBay Listing Data CSV", type=['csv'])
 order_file = st.file_uploader("Upload eBay Order Details CSV", type=['csv'])

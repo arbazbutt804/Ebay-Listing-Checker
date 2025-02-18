@@ -66,9 +66,15 @@ def get_download_link(df, filename):
 # Streamlit UI
 st.set_page_config(page_title="eBay Unsold Items Analyzer", layout="centered")
 st.title("📊 eBay Unsold Items Analyzer")
+st.write("Upload your eBay Listing and Order CSV files to analyze which items haven't been sold in the last 60 days.")
 
 listing_file = st.file_uploader("Upload eBay Listing Data CSV", type=['csv'])
 order_file = st.file_uploader("Upload eBay Order Details CSV", type=['csv'])
+
+if 'sold_df' not in st.session_state:
+    st.session_state.sold_df = None
+if 'unsold_df' not in st.session_state:
+    st.session_state.unsold_df = None
 
 if listing_file and order_file:
     col1, col2, col3 = st.columns([1, 2, 1])
@@ -76,14 +82,14 @@ if listing_file and order_file:
         if st.button("🔍 Process Data"):
             with st.spinner("Processing..."):
                 sold_df, unsold_df = process_ebay_data(listing_file, order_file)
-
                 if sold_df is not None and unsold_df is not None:
+                    st.session_state.sold_df = sold_df
+                    st.session_state.unsold_df = unsold_df
                     st.success("Processing complete! Download the results below.")
 
-                    col1, col2 = st.columns(2)
-                    with col1:
-                        get_download_link(sold_df, "sold_items.csv")
-                    with col2:
-                        get_download_link(unsold_df, "unsold_items.csv")
-                else:
-                    st.error("Error processing data. Please check your CSV files.")
+if st.session_state.sold_df is not None and st.session_state.unsold_df is not None:
+    col1, col2 = st.columns(2)
+    with col1:
+        get_download_link(st.session_state.sold_df, "sold_items.csv", "sold_download")
+    with col2:
+        get_download_link(st.session_state.unsold_df, "unsold_items.csv", "unsold_download")

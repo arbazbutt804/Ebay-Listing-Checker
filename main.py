@@ -77,9 +77,9 @@ if 'unsold_df' not in st.session_state:
     st.session_state.unsold_df = None
 
 if listing_file and order_file:
-    col1, col2, col3 = st.columns([1, 2, 1])
+    col1, col2, col3 = st.columns([1, 1, 1])
     with col2:
-        if st.button("🔍 Process Data"):
+        if st.button("🔍 Process Data", use_container_width=True):
             with st.spinner("Processing..."):
                 sold_df, unsold_df = process_ebay_data(listing_file, order_file)
                 if sold_df is not None and unsold_df is not None:

@@ -60,7 +60,7 @@ def process_ebay_data(listing_file, order_file):
 
 def get_download_link(df, filename):
     csv = df.to_csv(index=False)
-    return st.download_button(label=f"Download {filename}", data=csv, file_name=filename, mime='text/csv')
+    return st.download_button(label=f"{filename}", data=csv, file_name=filename, mime='text/csv')
 
 
 # Streamlit UI

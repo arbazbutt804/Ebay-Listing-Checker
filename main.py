@@ -82,8 +82,8 @@ if listing_file and order_file:
 
                     col1, col2 = st.columns(2)
                     with col1:
-                        get_download_link(sold_df, "sold_items.csv", "sold_download")
+                        get_download_link(sold_df, "sold_items.csv")
                     with col2:
-                        get_download_link(unsold_df, "unsold_items.csv", "unsold_download")
+                        get_download_link(unsold_df, "unsold_items.csv")
                 else:
                     st.error("Error processing data. Please check your CSV files.")
